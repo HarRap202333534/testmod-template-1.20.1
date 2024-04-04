@@ -9,6 +9,9 @@ import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -27,6 +30,8 @@ public class AttackEntityHandler implements AttackEntityCallback {
             float multiplier = stack.getSubNbt("testmod.multiplier").getFloat("testmod.multiplier");
             float newDamage = (((CustomModItems) stack.getItem()).getAttackDamage() * multiplier);
             ((LivingEntity) entity).damage(entity.getDamageSources().playerAttack(player), newDamage);
+            ((ServerWorld) world).spawnParticles(ParticleTypes.DAMAGE_INDICATOR, entity.getX(), entity.getBodyY(0.5), entity.getZ(), 2, 0.1, 0.0, 0.1, 0.2);
+            ((ServerWorld) world).playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_NODAMAGE, player.getSoundCategory(), 1.0f, 1.0f);
 
             stack.getItem().postHit(stack, (LivingEntity) entity, player);
 
