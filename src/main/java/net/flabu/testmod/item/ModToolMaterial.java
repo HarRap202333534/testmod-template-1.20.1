@@ -7,11 +7,11 @@ import net.minecraft.recipe.Ingredient;
 import java.util.function.Supplier;
 
 public enum ModToolMaterial implements ToolMaterial {
-    TEST(MiningLevels.NETHERITE, 1000, 4.5f, 3.5f, 26, () -> Ingredient.ofItems(ModItems.TEST));
+    TEST(MiningLevels.NETHERITE, 1000, 4.5f, 7, 26, () -> Ingredient.ofItems(ModItems.TEST));
     private final int miningLevel;
     private final int itemDurability;
     private final float miningSpeed;
-    private final float attackDamage;
+    private float attackDamage;
     private final int enchantability;
     private final Supplier<Ingredient> repairInredient;
 

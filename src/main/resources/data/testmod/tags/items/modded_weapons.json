@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "testmod:custom_test",
+    "testmod:custom_test2"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+"type": "minecraft:crafting_shaped",
+"category": "Combat",
+"pattern": [
+" # ",
+" # ",
+" ? "
+],
+"key": {
+  "#": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "?": {
+    "item": "minecraft:stick"
+  }
+},
+"result": {
+    "item": "testmod:custom_test2"
+  }
+}
