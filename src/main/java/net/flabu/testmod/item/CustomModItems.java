@@ -50,14 +50,20 @@ public class CustomModItems extends SwordItem {
         }
         int affutage = stack.getNbt().getInt("testmod.affutage");
 
-        if(affutage == 50){
+        if(affutage >= 10 && affutage < 45) {
+            multiplicateur = 0.75f;
+        }
+        else if(affutage >= 0 && affutage < 25) {
+            multiplicateur = 0.45f;
+        }
+        else if(affutage >= 45 && affutage < 60) {
             multiplicateur = 1;
         }
-        else if(affutage > 50){
-            multiplicateur = /*1.10f*/ 5;
+        else if(affutage >= 60 && affutage < 80) {
+            multiplicateur = 1.15f;
         }
-        else{
-            multiplicateur = /*0.90f*/ 0.10f;
+        else if(affutage >= 80 && affutage <= 100) {
+            multiplicateur = 1.30f;
         }
 
         NbtCompound nbtData = new NbtCompound();
@@ -116,14 +122,24 @@ public class CustomModItems extends SwordItem {
         return state.isOf(Blocks.COAL_BLOCK);
     }
 
-    public void generateItemModel(ItemModelGenerator modelGenerator) {
-        modelGenerator.register(ModItems.CUSTOM_TEST, Models.HANDHELD);
-        modelGenerator.register(ModItems.CUSTOM_TEST2, Models.HANDHELD);
-    }
-
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Affutage : " + stack.getNbt().getInt("testmod.affutage")).formatted(Formatting.GREEN));
+        int affutage = stack.getNbt().getInt("testmod.affutage");
+        if(affutage >= 10 && affutage < 45) {
+            tooltip.add(Text.literal("Affutage : " + affutage).formatted(Formatting.RED));
+        }
+        else if(affutage >= 0 && affutage < 25) {
+            tooltip.add(Text.literal("Affutage : " + affutage).formatted(Formatting.DARK_RED));
+        }
+        else if(affutage >= 45 && affutage < 60) {
+            tooltip.add(Text.literal("Affutage : " + affutage).formatted(Formatting.YELLOW));
+        }
+        else if(affutage >= 60 && affutage < 80) {
+            tooltip.add(Text.literal("Affutage : " + affutage).formatted(Formatting.GREEN));
+        }
+        else if(affutage >= 80 && affutage <= 100) {
+            tooltip.add(Text.literal("Affutage : " + affutage).formatted(Formatting.DARK_GREEN));
+        }
         super.appendTooltip(stack, world, tooltip, context);
     }
 }
