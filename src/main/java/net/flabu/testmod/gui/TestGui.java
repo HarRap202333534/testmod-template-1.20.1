@@ -8,7 +8,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;;
 
 @Environment(EnvType.CLIENT)
 public class TestGui extends Screen {
@@ -16,8 +15,6 @@ public class TestGui extends Screen {
     public TestGui() {
         super(Text.literal("Test"));
     }
-
-    public Identifier BACKGROUND = new Identifier("testmod", "textures/gui/test_background.png");
 
     public ButtonWidget button1;
     public ButtonWidget button2;
