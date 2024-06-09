@@ -15,12 +15,15 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item TEST = registerItem("test", new Item(new FabricItemSettings()));
+    public static final Item TEST_RES = registerItem("test_res", new Item(new FabricItemSettings()));
 
     public static final Item CUSTOM_TEST = registerItem("custom_test", new CustomModItems(ModToolMaterial.TEST, 0, 2f, new FabricItemSettings()));
     public static final Item CUSTOM_TEST2 = registerItem("custom_test2", new CustomModItems(ModToolMaterial.TEST, 4, 2f, new FabricItemSettings()));
 
+
     private static void addItemsToIngredientTabItemGroup(FabricItemGroupEntries entries) {
         entries.add(TEST);
+        entries.add(TEST_RES);
     }
     private static void addItemsToCombatItemGroup(FabricItemGroupEntries entries) {
         entries.add(CUSTOM_TEST);
