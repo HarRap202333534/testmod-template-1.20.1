@@ -1,8 +1,12 @@
 package net.flabu.testmod;
 
+import mod.azure.azurelib.AzureLib;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.flabu.testmod.entity.ModEntities;
+import net.flabu.testmod.entity.custom.CocatrixEntity;
 import net.flabu.testmod.event.AttackEntityHandler;
 import net.flabu.testmod.item.ModItems;
 import org.slf4j.Logger;
@@ -16,5 +20,8 @@ public class Testmod implements ModInitializer {
 	public void onInitialize() {
 		ModItems.registerModItems();
 		AttackEntityCallback.EVENT.register(new AttackEntityHandler());
+
+		AzureLib.initialize();
+		FabricDefaultAttributeRegistry.register(ModEntities.COCATRIX, CocatrixEntity.setAttributes());
 	}
 }
