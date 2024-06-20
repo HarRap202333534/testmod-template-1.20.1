@@ -1,15 +1,14 @@
 package net.flabu.testmod.entity.custom;
 
-import mod.azure.azurelib.AzureLib;
-import mod.azure.azurelib.constant.DefaultAnimations;
 import mod.azure.azurelib.core.animatable.GeoAnimatable;
 import mod.azure.azurelib.core.animatable.instance.AnimatableInstanceCache;
-import mod.azure.azurelib.core.animatable.instance.InstancedAnimatableInstanceCache;
 import mod.azure.azurelib.core.animation.*;
 import mod.azure.azurelib.core.object.PlayState;
 import mod.azure.azurelib.util.AzureLibUtil;
 import mod.azure.azurelib.util.RenderUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.ActiveTargetGoal;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
@@ -21,8 +20,7 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import org.jetbrains.annotations.Nullable;
 
 public class CocatrixEntity extends HostileEntity implements GeoAnimatable {
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
@@ -36,12 +34,19 @@ public class CocatrixEntity extends HostileEntity implements GeoAnimatable {
             tAnimationState.getController().setAnimation(RawAnimation.begin().then("couse", Animation.LoopType.LOOP));
             return PlayState.CONTINUE;
         }
-        else{
-            tAnimationState.getController().setAnimation(RawAnimation.begin().then("immobile", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
-        }
+
+        tAnimationState.getController().setAnimation(RawAnimation.begin().then("immobile", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
     }
 
+    private <T extends GeoAnimatable> PlayState attackPredicate(AnimationState<T> tAnimationState) {
+        if(this.handSwinging && tAnimationState.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
+            tAnimationState.getController().forceAnimationReset();
+            tAnimationState.getController().setAnimation(RawAnimation.begin().then("morsure", Animation.LoopType.PLAY_ONCE));
+            this.handSwinging = false;
+        }
+        return PlayState.CONTINUE;
+    }
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0D)
@@ -64,7 +69,9 @@ public class CocatrixEntity extends HostileEntity implements GeoAnimatable {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
+        controllers.add(new AnimationController<>(this, "attackController", 0, this::attackPredicate));
     }
+
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

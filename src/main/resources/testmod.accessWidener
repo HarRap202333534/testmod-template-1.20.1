@@ -1,0 +1,7 @@
+accessWidener v1 named
+
+accessible method net/minecraft/entity/ai/goal/MeleeAttackGoal getSquaredMaxAttackDistance (Lnet/minecraft/entity/LivingEntity;)D
+extendable method net/minecraft/entity/ai/goal/MeleeAttackGoal getSquaredMaxAttackDistance (Lnet/minecraft/entity/LivingEntity;)D
+
+accessible method net/minecraft/entity/LivingEntity getHandSwingDuration     ()I
+extendable method net/minecraft/entity/LivingEntity getHandSwingDuration     ()I

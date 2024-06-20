@@ -26,6 +26,7 @@ public class CocatrixEntityRenderer extends GeoEntityRenderer<CocatrixEntity> {
 
     @Override
     public void render(CocatrixEntity entity, float entityYaw, float partialTick, MatrixStack poseStack, VertexConsumerProvider bufferSource, int packedLight) {
+        poseStack.scale(0.55f, 0.55f, 0.55f);
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 }
