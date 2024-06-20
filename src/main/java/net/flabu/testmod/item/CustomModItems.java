@@ -1,6 +1,7 @@
 package net.flabu.testmod.item;
 
 import net.flabu.testmod.block.ModBlocks;
+import net.flabu.testmod.block.entity.AnimatedBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
