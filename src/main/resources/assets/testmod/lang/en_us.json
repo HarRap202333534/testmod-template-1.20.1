@@ -2,6 +2,7 @@
   "item.testmod.wine_glass": "Glass of wine",
   "item.testmod.custom_test": "Custom Test",
   "item.testmod.custom_test2": "Custom Test 2",
+  "item.testmod.grindstone": "Grindstone",
   "key.category.testmod.test": "Test Mod Keys",
   "key.testmod.open_gui": "Open GUI Key"
 }

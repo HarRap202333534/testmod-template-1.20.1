@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.flabu.testmod.Testmod;
+import net.flabu.testmod.block.ModBlocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
@@ -17,6 +18,7 @@ public class ModItems {
     public static final Item CUSTOM_TEST = registerItem("custom_test", new CustomModItems(ModToolMaterial.TEST, 0, 2f, new FabricItemSettings()));
     public static final Item CUSTOM_TEST2 = registerItem("custom_test2", new CustomModItems(ModToolMaterial.TEST, 4, 2f, new FabricItemSettings()));
 
+    public static final Item GRINDSTONE_BLOCK_ITEM = registerItem("grindstone", new AnimatedBlockItem(ModBlocks.GRINDSTONE, new FabricItemSettings()));
 
     private static void addItemsToIngredientTabItemGroup(FabricItemGroupEntries entries) {
         entries.add(TEST);

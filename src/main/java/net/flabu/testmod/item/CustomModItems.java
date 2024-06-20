@@ -1,5 +1,6 @@
 package net.flabu.testmod.item;
 
+import net.flabu.testmod.block.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
@@ -81,6 +82,7 @@ public class CustomModItems extends SwordItem {
 
             if(isValidBlock(state)){
                 checkNbt(player);
+
                 return ActionResult.SUCCESS;
             }
         }
@@ -119,7 +121,7 @@ public class CustomModItems extends SwordItem {
     }
 
     private boolean isValidBlock(BlockState state) {
-        return state.isOf(Blocks.COAL_BLOCK);
+        return state.isOf(ModBlocks.GRINDSTONE);
     }
 
     @Override

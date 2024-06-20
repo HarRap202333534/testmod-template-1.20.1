@@ -5,6 +5,8 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.flabu.testmod.block.ModBlocks;
+import net.flabu.testmod.block.entity.ModBlockEntities;
 import net.flabu.testmod.entity.ModEntities;
 import net.flabu.testmod.entity.custom.CocatrixEntity;
 import net.flabu.testmod.event.AttackEntityHandler;
@@ -19,7 +21,10 @@ public class Testmod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 		AttackEntityCallback.EVENT.register(new AttackEntityHandler());
+
+		ModBlockEntities.registerAllBlockEntities();
 
 		AzureLib.initialize();
 		FabricDefaultAttributeRegistry.register(ModEntities.COCATRIX, CocatrixEntity.setAttributes());
