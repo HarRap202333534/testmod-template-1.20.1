@@ -122,7 +122,11 @@ public class CustomModItems extends SwordItem {
     }
 
     private boolean isValidBlock(BlockState state) {
-        return state.isOf(ModBlocks.GRINDSTONE);
+        if(state.isOf(ModBlocks.GRINDSTONE)){
+            AnimatedBlockEntity.playerInteraction = true;
+            return true;
+        }
+        return false;
     }
 
     @Override

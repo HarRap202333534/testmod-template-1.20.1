@@ -1,6 +1,7 @@
 package net.flabu.testmod.block.entity.client;
 
 import mod.azure.azurelib.renderer.GeoBlockRenderer;
+import mod.azure.azurelib.renderer.layer.GeoRenderLayer;
 import net.flabu.testmod.block.entity.AnimatedBlockEntity;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 

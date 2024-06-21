@@ -2,7 +2,6 @@
 	"format_version": "1.8.0",
 	"animations": {
 		"animation.model.rolling_stone": {
-			"loop": true,
 			"animation_length": 0.5,
 			"bones": {
 				"stone": {

@@ -18,6 +18,6 @@ public class AnimatedBlockModel extends GeoModel<AnimatedBlockEntity> {
 
     @Override
     public Identifier getAnimationResource(AnimatedBlockEntity animatedBlockEntity) {
-        return new Identifier(Testmod.MOD_ID, "aniamtions/grindstone.animation.json");
+        return new Identifier(Testmod.MOD_ID, "animations/grindstone.animation.json");
     }
 }
