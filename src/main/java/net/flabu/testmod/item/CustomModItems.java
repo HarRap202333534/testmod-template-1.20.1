@@ -2,6 +2,7 @@ package net.flabu.testmod.item;
 
 import net.flabu.testmod.block.ModBlocks;
 import net.flabu.testmod.block.entity.AnimatedBlockEntity;
+import net.flabu.testmod.sound.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
@@ -11,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -83,7 +85,7 @@ public class CustomModItems extends SwordItem {
 
             if(isValidBlock(state)){
                 checkNbt(player);
-
+                context.getWorld().playSound(null, positionClicked, ModSounds.GRINDSTONE_USE_EVENT, SoundCategory.BLOCKS, 1f, 1f);
                 return ActionResult.SUCCESS;
             }
         }

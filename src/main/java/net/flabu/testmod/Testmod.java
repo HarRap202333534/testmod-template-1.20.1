@@ -11,6 +11,7 @@ import net.flabu.testmod.entity.ModEntities;
 import net.flabu.testmod.entity.custom.CocatrixEntity;
 import net.flabu.testmod.event.AttackEntityHandler;
 import net.flabu.testmod.item.ModItems;
+import net.flabu.testmod.sound.ModSounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,5 +29,6 @@ public class Testmod implements ModInitializer {
 
 		AzureLib.initialize();
 		FabricDefaultAttributeRegistry.register(ModEntities.COCATRIX, CocatrixEntity.setAttributes());
+		ModSounds.registerSounds();
 	}
 }

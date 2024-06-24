@@ -12,6 +12,8 @@ import net.flabu.testmod.event.KeyInputHandler;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.sound.SoundEntry;
+import net.minecraft.sound.SoundEvent;
 
 public class TestmodClient implements ClientModInitializer {
     @Override

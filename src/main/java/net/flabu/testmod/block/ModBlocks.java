@@ -15,7 +15,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static final Block GRINDSTONE = Registry.register(Registries.BLOCK, new Identifier(Testmod.MOD_ID, "grindstone"), new AnimatedBlock(FabricBlockSettings.create().nonOpaque()));
+    public static final Block GRINDSTONE = Registry.register(Registries.BLOCK, new Identifier(Testmod.MOD_ID, "grindstone"), new AnimatedBlock(FabricBlockSettings.create().nonOpaque().strength(1.0f,1.0f)));
 
     private static void addItemsToFunctionalItemGroup(FabricItemGroupEntries entries){
         entries.add(GRINDSTONE);
