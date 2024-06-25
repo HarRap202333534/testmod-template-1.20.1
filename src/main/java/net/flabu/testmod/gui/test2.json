@@ -1,0 +1,17 @@
+{
+  "ingredients": [
+    {
+      "item": "minecraft:andesite"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "quantity": [
+    4,
+    2
+  ],
+  "output": {
+    "item": "minecraft:stone_pickaxe"
+  }
+}
