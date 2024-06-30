@@ -10,6 +10,7 @@ import mod.azure.azurelib.util.JsonUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.impl.lib.gson.JsonReader;
+import net.flabu.testmod.recipe.CustomRecipe;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -50,7 +51,7 @@ public class TestGui extends Screen {
         button1 = ButtonWidget.builder(Text.literal("Button 1"), button -> {
                     System.out.println("You clicked button1!");
                     try {
-                        craft(1, readJson("test_recipe.json"));
+                        CustomRecipe.craft(1, CustomRecipe.readJson("test2.json"));
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
                     } catch (IOException e) {
@@ -71,21 +72,6 @@ public class TestGui extends Screen {
         addDrawableChild(button2);
     }
 
-    public JsonObject readJson(String fileName) throws IOException {
-
-        /*ObjectMapper mapper = new ObjectMapper();
-        InputStream is = Item.class.getResourceAsStream("/test2.json");
-        Object o = mapper.readValue(is, Item.class  );*/
-
-        Object o = new JsonParser().parse(new FileReader("C:\\Users\\lolra\\OneDrive\\Bureau\\testmod-template-1.20.1\\src\\main\\resources\\data\\testmod\\recipes\\test_recipe.json"));
-
-
-        JsonObject j = (JsonObject) o;
-
-
-        return j;
-    }
-
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         context.fillGradient(0, 0, this.width, this.height, 1602211792, 1602211792);
@@ -97,91 +83,5 @@ public class TestGui extends Screen {
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2 / 2, 30, 0xFFFFFF);
         context.getMatrices().pop();
         super.render(context, mouseX, mouseY, delta);
-    }
-
-    public void decrementStack(int quantity, Item item, Inventory inv){
-        for(int j = 0; j < inv.size(); j++){
-            if(inv.getStack(j).getItem() == item){
-                for(int i = 0; i < quantity; i++){
-                    if(inv.getStack(j).getCount() > 0){
-                        inv.getStack(j).decrement(1);
-                    }
-                    if(inv.getStack(j).getCount() == 0){
-                        inv.setStack(j, new ItemStack(Items.AIR));
-                    }
-                }
-            }
-        }
-    }
-
-    public void incrementStack(int quantity, Item item, Inventory inv){
-        for(int i = 0; i < inv.size(); i++){
-            if(inv.getStack(i).getItem() == item && inv.getStack(i).getCount() < inv.getStack(i).getMaxCount()){
-                inv.getStack(i).increment(1);
-                break;
-            }
-            else if(inv.getStack(i).isEmpty()){
-                inv.setStack(i, new ItemStack(item));
-                break;
-            }
-        }
-    }
-
-    public void craft(int outputQuantity, JsonObject json){
-        Inventory inv = MinecraftClient.getInstance().player.getInventory();
-        List<Item> ingOwn = new ArrayList<>();
-        List<Integer> NbIngOwn = new ArrayList<>();
-        boolean canCraft = false;
-
-        ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
-        JsonArray ing = JsonHelper.getArray(json, "ingredients");
-        JsonArray quantity = JsonHelper.getArray(json, "quantity");
-        List<Item> ingNeed = new ArrayList<>();
-        List<Integer> NbIngNeed = new ArrayList<>();
-
-        for(int i = 0; i < quantity.size(); i++){
-            NbIngNeed.add(quantity.get(i).getAsInt());
-        }
-
-        for(int i = 0; i <  ing.size(); i++){
-            ingNeed.add(ShapedRecipe.getItem(ing.get(i).getAsJsonObject()));
-        }
-
-        for(int j = 0; j < ingNeed.size(); j++){
-            for (int p = 0; p < inv.size(); p++){
-                if(inv.getStack(p).getItem() == ingNeed.get(j)){
-                    int m = inv.getStack(p).getCount();
-                    if(!ingOwn.contains(ingNeed.get(j))){
-                        ingOwn.add(inv.getStack(p).getItem());
-                    }
-                    if(NbIngOwn.size() == ingOwn.size()){
-                        NbIngOwn.set(ingOwn.size() - 1, m + NbIngOwn.get(ingOwn.size() - 1));
-                    }
-                    else{
-                        NbIngOwn.add(ingOwn.size() - 1, m);
-                    }
-                }
-            }
-        }
-
-        for(int j = 0; j < ingNeed.size(); j++){
-            if(NbIngOwn.size() > 0 && ingOwn.size() > 0){
-                if(NbIngOwn.get(j) >= NbIngNeed.get(j)){
-                    canCraft = true;
-                }
-                else{
-                    canCraft = false;
-                }
-            }
-        }
-        if(canCraft){
-            incrementStack(outputQuantity, output.getItem(), inv);
-            for(int i = 0; i < ingNeed.size(); i++){
-                decrementStack(NbIngNeed.get(i), ingNeed.get(i), inv);
-            }
-        }
-        else{
-            MinecraftClient.getInstance().player.sendMessage(Text.literal("Vous n'avez pas les ingrédients nécessaires."));
-        }
     }
 }
