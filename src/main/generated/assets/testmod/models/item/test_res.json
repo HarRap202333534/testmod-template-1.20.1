@@ -1,6 +1,6 @@
 {
-  "parent": "testmod:display/custom_handheld",
+  "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "testmod:item/test_res_2"
+    "layer0": "testmod:item/test_res"
   }
 }

@@ -12,6 +12,10 @@ import net.flabu.testmod.entity.custom.CocatrixEntity;
 import net.flabu.testmod.event.AttackEntityHandler;
 import net.flabu.testmod.item.ModItems;
 import net.flabu.testmod.sound.ModSounds;
+import net.flabu.testmod.world.dimension.ModDimensions;
+import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,5 +34,14 @@ public class Testmod implements ModInitializer {
 		AzureLib.initialize();
 		FabricDefaultAttributeRegistry.register(ModEntities.COCATRIX, CocatrixEntity.setAttributes());
 		ModSounds.registerSounds();
+
+		ModDimensions.register();
+
+		CustomPortalBuilder.beginPortal()
+				.frameBlock(Blocks.WHITE_WOOL)
+				.lightWithItem(ModItems.TEST_RES)
+				.destDimID(new Identifier(MOD_ID, "invert"))
+				.tintColor(0, 0, 0)
+				.registerPortal();
 	}
 }
