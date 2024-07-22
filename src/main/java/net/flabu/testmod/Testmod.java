@@ -13,7 +13,6 @@ import net.flabu.testmod.event.AttackEntityHandler;
 import net.flabu.testmod.item.ModItems;
 import net.flabu.testmod.sound.ModSounds;
 import net.flabu.testmod.world.dimension.ModDimensions;
-import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -36,12 +35,5 @@ public class Testmod implements ModInitializer {
 		ModSounds.registerSounds();
 
 		ModDimensions.register();
-
-		CustomPortalBuilder.beginPortal()
-				.frameBlock(Blocks.WHITE_WOOL)
-				.lightWithItem(ModItems.TEST_RES)
-				.destDimID(new Identifier(MOD_ID, "invert"))
-				.tintColor(0, 0, 0)
-				.registerPortal();
 	}
 }
